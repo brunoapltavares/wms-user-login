@@ -19,8 +19,8 @@ app:
     bi:
         topicArn: arn:aws:sns:us-east-1:719533611419:favo-wms-stg_SNS_BI
         region: us-east-1
-        accessKey: AKIA2PB4LTGNRVLMTY7C
-        secretKey: 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
+        #accessKey: AKIA2PB4LTGNRVLMTY7C
+        #secretKey: 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
     params:
         api-integration-uri: https://api-auth.mercadofavostg.com/signin
 

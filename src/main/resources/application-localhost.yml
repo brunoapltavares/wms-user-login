@@ -19,8 +19,8 @@ app:
     bi:
         topicArn: arn:aws:sns:us-east-1:294028721626:qa_wms_bi_Topic
         region: us-east-1
-        accessKey: AKIAUI5L2HXNI23CELKP
-        secretKey: 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
+        #accessKey: AKIAUI5L2HXNI23CELKP
+        #secretKey: 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
     params:
         api-integration-uri: https://qa-api-integration.favoapp.com.br/signin
 
