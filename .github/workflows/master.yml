@@ -21,8 +21,8 @@ jobs:
     - name: Build and push docker image
       run: |
         aws --version
-        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 294028721626.dkr.ecr.us-east-1.amazonaws.com
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 211125397326.dkr.ecr.us-east-1.amazonaws.com
         docker build -f DockerfileProd --no-cache -t wms-user-login:latest-prod .
-        docker tag wms-user-login:latest-prod 294028721626.dkr.ecr.us-east-1.amazonaws.com/wms-user-login:latest-prod
-        docker push 294028721626.dkr.ecr.us-east-1.amazonaws.com/wms-user-login:latest-prod
+        docker tag wms-user-login:latest-prod 211125397326.dkr.ecr.us-east-1.amazonaws.com/wms-user-login:latest-prod
+        docker push 211125397326.dkr.ecr.us-east-1.amazonaws.com/wms-user-login:latest-prod
         aws ecs update-service --cluster wms-cluster-prod --service wms-user-login-prod --force-new-deployment
