@@ -1,0 +1,28 @@
+name: Staging
+
+on:
+  push:
+    branches: [ develop ]
+  
+jobs:
+  build:
+
+    runs-on: java-aws-gitaction-runner-staging
+      
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+    - name: Build with Maven
+      run: mvn -B -DskipTests clean package    
+    - name: Build and push docker image
+      run: |
+        aws --version
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 719533611419.dkr.ecr.us-east-1.amazonaws.com
+        docker build -f DockerfileStg --no-cache -t wms-user-login-sv:latest .
+        docker tag wms-user-login-sv:latest 719533611419.dkr.ecr.us-east-1.amazonaws.com/wms-user-login-ecr:latest
+        docker push 719533611419.dkr.ecr.us-east-1.amazonaws.com/wms-user-login-ecr:latest
+        aws ecs update-service --cluster wms-cluster --service wms-user-login-sv --force-new-deployment

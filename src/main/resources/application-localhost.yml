@@ -1,0 +1,58 @@
+flyway:
+    url: jdbc:postgresql://saas-wms.clo4ugew6syl.us-east-2.rds.amazonaws.com:5432/postgres?currentSchema=s_user
+    createSchemas: false
+    schemas: s_user
+
+spring:
+    application:
+        name: wms-user-login
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://saas-wms.clo4ugew6syl.us-east-2.rds.amazonaws.com:5432/postgres?currentSchema=s_user
+        username: postgres
+        password: '2kl4Gsd5c8j0Y3RW' 
+    jpa:
+        hibernate:
+            ddl-auto: none
+
+app:
+    bi:
+        topicArn: arn:aws:sns:us-east-1:294028721626:qa_wms_bi_Topic
+        region: us-east-1
+        accessKey: AKIAUI5L2HXNI23CELKP
+        secretKey: 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
+    params:
+        api-integration-uri: https://qa-api-integration.favoapp.com.br/signin
+
+server:
+    servlet:
+        contextPath: /wms-user-login
+    port: 8086
+        
+logging:
+    level:
+        root: INFO    
+        org:
+            hibernate:
+                type:
+                    descriptor:
+                        sql: FATAL
+
+management:
+    endpoint:
+        health:
+            show-details: always
+    endpoints:
+        web:
+            exposure:
+                include: health,info
+info:
+    app:
+        name: "@project.name@"
+        description: "@project.description@"
+        version: "@project.version@"
+        encoding: "@project.build.sourceEncoding@"
+        java:
+            version: "@java.version@"   
+        group-id: "@project.groupId@"
+        artifact-id: "@project.artifactId@"
